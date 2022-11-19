@@ -5,13 +5,9 @@ import org.junit.Test;
 
 import java.net.URL;
 
-import static org.junit.Assert.assertEquals;
-
-public class XMLToJsonTest
-{
+public class XMLToJsonTest {
     @Test
-    public void shouldTranslateEmptyXMLToJson() throws Exception
-    {
+    public void shouldTranslateEmptyXMLToJson() throws Exception {
         XMLToJson translate = new XMLToJson();
 
         URL url = new URL("file:./src/test/resources/toc.xml");
