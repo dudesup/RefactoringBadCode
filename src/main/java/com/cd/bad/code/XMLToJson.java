@@ -230,12 +230,4 @@ public class XMLToJson {
         return tagetString;
 
     }
-
-    public static void main(String[] args) throws Exception {
-        XMLToJson x2j = new XMLToJson();
-        String test = "fk:AMM24_fk:AMM24-FM";
-
-        test = "";
-        System.out.println(x2j.getJson(new URL("http://localhost:8080/WebNavSpring/q400/amm/toc.xml"), test));
-    }
 }
