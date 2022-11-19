@@ -60,15 +60,8 @@ public class XMLToJson {
         Document TOCDoc = util.getDocument(urlToTOC);
         String jsonString = "[";
 
-        Element node = null;
-        if (xPathString.equals("/")) {
+        Element node = getNode(xPathString, TOCDoc);
 
-            node = TOCDoc.getRootElement();
-        } else {
-            String realXPathString = pathMapping(xPathString);
-            System.out.println(realXPathString);
-            node = (Element) TOCDoc.selectSingleNode(realXPathString);
-        }
         //List<Element>  li = node.elements();
         for (Iterator<Element> i = node.elementIterator(); i.hasNext(); ) {
             Element elem = (Element) i.next();
@@ -135,6 +128,19 @@ public class XMLToJson {
         jsonString = jsonString.concat("]");
         return jsonString;
 
+    }
+
+    private Element getNode(String xPathString, Document TOCDoc) throws Exception {
+        Element node = null;
+        if (xPathString.equals("/")) {
+
+            node = TOCDoc.getRootElement();
+        } else {
+            String realXPathString = pathMapping(xPathString);
+            System.out.println(realXPathString);
+            node = (Element) TOCDoc.selectSingleNode(realXPathString);
+        }
+        return node;
     }
 
     private boolean hasChildren(Element elem) {
