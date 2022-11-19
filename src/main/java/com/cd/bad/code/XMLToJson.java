@@ -73,11 +73,7 @@ public class XMLToJson {
         for (Iterator<Element> i = node.elementIterator(); i.hasNext(); ) {
             Element elem = (Element) i.next();
             String eleName = elem.getName();
-            Boolean hasChildren = false;
-            if (hasChildren(elem)) {
-                hasChildren = true;
 
-            }
             List<Attribute> list = elem.attributes();
             String titleAttrContent = elem.attributeValue("title");
 
@@ -104,9 +100,8 @@ public class XMLToJson {
                     }
 
                 }
-                if (hasChildren) {
+                if (hasChildren(elem)) {
                     jsonString = jsonString.concat(",'state':'closed'");
-
                 }
                 jsonString = jsonString.concat("},");
             } else if (eleName == "folder") {
