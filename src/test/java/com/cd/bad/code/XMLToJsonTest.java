@@ -29,6 +29,19 @@ public class XMLToJsonTest {
         assertEquals("[]", translate.getJsonFromDocument("/", document));
     }
 
+    @Test
+    public void shouldParseEmptyDocument() throws Exception {
+        final XMLToJson translate = new XMLToJson();
+        final Document document = documentFor("<folder><doc/></folder>");
+        assertEquals("[{}]", translate.getJsonFromDocument("/", document));
+    }
+
+    @Test
+    public void shouldParseDocumentCorrectly() throws Exception {
+        final XMLToJson translate = new XMLToJson();
+        final Document document = documentFor("<folder><doc title=\"test\"/></folder>");
+        assertEquals("[{'data':'test'}]", translate.getJsonFromDocument("/", document));
+    }
 
     private Document documentFor(String xml) throws DocumentException {
         var reader = new SAXReader();
