@@ -55,17 +55,10 @@ public class XMLToJson
 
     Util util = new Util();
 
-    /*
-     * @param url the path to TOC.xml
-     * @param xPathString the short format searched node path
-     * @throws DocumentException
-     *
-     * sample xPathString : "fk:AMM24_fk:AMM24-FM_dk"
-     */
     @SuppressWarnings({ "unchecked" })
-    public String getJson(URL url, String xPathString) throws Exception
+    public String getJson(URL urlToTOC, String xPathString) throws Exception
     {
-        Document TOCDoc = util.getDocument(url);
+        Document TOCDoc = util.getDocument(urlToTOC);
         String jsonString = "[";
 
         Element node = null;
