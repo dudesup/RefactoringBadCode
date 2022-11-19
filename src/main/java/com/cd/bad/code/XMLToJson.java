@@ -62,7 +62,7 @@ public class XMLToJson {
 
     }
 
-    private String getJsonForDoc(String xPathString, Document TOCDoc) throws Exception {
+    public String getJsonForDoc(String xPathString, Document TOCDoc) throws Exception {
         String jsonString = "[";
 
         Element node = getNode(xPathString, TOCDoc);
@@ -78,6 +78,16 @@ public class XMLToJson {
         jsonString = jsonString.substring(0, jsonString.length() - 1);
         jsonString = jsonString.concat("]");
         return jsonString;
+    }
+
+    public static Map<String, TocElement> elements;
+    public static final DocElement DOC_ELEMENT = new DocElement();
+    public static final FolderElement FOLDER_ELEMENT = new FolderElement();
+
+    static {
+        elements = new HashMap<String, TocElement>();
+        elements.put("doc", DOC_ELEMENT);
+        elements.put("folder", FOLDER_ELEMENT);
     }
 
     private String processElement(String xPathString, String jsonString, Iterator<Element> i) {
