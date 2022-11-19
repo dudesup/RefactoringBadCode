@@ -58,19 +58,26 @@ public class XMLToJson {
     @SuppressWarnings({"unchecked"})
     public String getJson(URL urlToTOC, String xPathString) throws Exception {
         Document TOCDoc = util.getDocument(urlToTOC);
+        return getJsonForDoc(xPathString, TOCDoc);
+
+    }
+
+    private String getJsonForDoc(String xPathString, Document TOCDoc) throws Exception {
         String jsonString = "[";
 
         Element node = getNode(xPathString, TOCDoc);
 
-        //List<Element>  li = node.elements();
         for (Iterator<Element> i = node.elementIterator(); i.hasNext(); ) {
             jsonString = processElement(xPathString, jsonString, i);
         }
 
+        return closeJson(jsonString);
+    }
+
+    private String closeJson(String jsonString) {
         jsonString = jsonString.substring(0, jsonString.length() - 1);
         jsonString = jsonString.concat("]");
         return jsonString;
-
     }
 
     private String processElement(String xPathString, String jsonString, Iterator<Element> i) {
